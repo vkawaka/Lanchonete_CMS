@@ -11,7 +11,7 @@ const tabela_nutricional = document.getElementById('tabela_nutricional')
 const quantidade = document.getElementById('quantidade')
 const cadastrar = document.getElementById('cadastrar')
 const descricao = document.getElementById('descricao')
-const categorias = document.getElementById('categoria')
+const categoria = document.getElementById('categoria')
 const ingredientes = document.getElementById('ingredientes')
 
 const criarCategoria = (cat) =>{
@@ -39,9 +39,9 @@ cadastrar.addEventListener('click', ()=>{
     const fotoInput = foto.value
     const tabelaNutricionalInput = tabela_nutricional.value
     const quantidadeInput = quantidade.value
-    const descricaoInput = descricao.src
-    const categoriaInput = categoria.src
-    const ingredientesInput = ingredientes.src
+    const descricaoInput = descricao.value
+    const categoriaInput = categoria.value
+    const ingredientesInput = ingredientes.value
     
 
     const insert ={

@@ -3,11 +3,77 @@ async function getPedidos(){
     const url = 'http://localhost:8080/v1/lanchonete/pedidos'
     const response = await fetch(url)
     const data = await response.json()
+    console.log(data);
     return data.pedidos
+}
+async function getPedido(id){
+    const url = `http://localhost:8080/v1/lanchonete/pedidos/${id}`
+    const response = await fetch(url)
+    const data = await response.json()
+    return data.pedido
+}
+import { getUsuario } from "./model/ing.js";
+let id = localStorage.getItem('id')
+let controle = await getUsuario(id)
+console.log(controle);
+
+if (controle[0].cargo == "Atendente") {
+    let cont = document.getElementById('controle')
+
+    let h = document.createElement('hr')
+    h.classList.add('border-black', 'mt-[15px]', 'w-[80px]')
+
+    let link = document.createElement('a')
+    link.href = '../telaHome/ingredientes.html'
+    link.classList.add('shadow-pop')
+    link.textContent = 'Ingredientes'
+
+    let h2 = document.createElement('hr')
+    h2.classList.add('border-black', 'mt-[15px]', 'w-[80px]')
+
+    let link2 = document.createElement('a')
+    link2.href = '../telaHome/produtos.html'
+    link2.classList.add('shadow-pop')
+    link2.textContent = 'Produtos'
+
+    cont.append(h, link, h2, link2)
+
+}
+
+if (controle[0].cargo == "Gerente") {
+    let cont = document.getElementById('controle')
+
+    let h = document.createElement('hr')
+    h.classList.add('border-black', 'mt-[15px]', 'w-[80px]')
+
+    let link = document.createElement('a')
+    link.href = '../telaHome/ingredientes.html'
+    link.classList.add('shadow-pop')
+    link.textContent = 'Ingredientes'
+
+    let h2 = document.createElement('hr')
+    h2.classList.add('border-black', 'mt-[15px]', 'w-[80px]')
+
+    let link2 = document.createElement('a')
+    link2.href = '../telaHome/produtos.html'
+    link2.classList.add('shadow-pop')
+    link2.textContent = 'Produtos'
+
+    let h3 = document.createElement('hr')
+    h3.classList.add('border-black', 'mt-[15px]', 'w-[80px]')
+
+    let link3 = document.createElement('a')
+    link3.href = '../telaHome/produtos.html'
+    link3.classList.add('shadow-pop')
+    link3.textContent = 'Produtos'
+
+    cont.append(h, link, h2, link2, h3, link3)
+
 }
 
 async function teste() {
     const listaPedidos = await getPedidos();
+    console.log(listaPedidos);
     listaPedidos.forEach(pedidos => {
         criarCardPedido(pedidos);
     });
@@ -16,11 +82,9 @@ teste()
 const container = document.getElementById('container');
 
 function criarCardPedido(info) {
+    let cliente = info.cliente
     const card1 = document.createElement('div');
     card1.classList.add('pl-[30px]' , 'flex', 'gap-[250px]', 'pt-[25px]'  , 'drop-shadow-lg', 'w-[910px]', 'h-[80px]', 'bg-[#A2C91F]', 'rounded-[20px]');
-    
-    // const card2 = document.createElement('div')
-    // card2.classList.add('top-[240px]', 'drop-shadow-lg', 'w-[910px]', 'h-[85px]', 'bg-white', 'rounded-[20px]','grid', 'grid-cols-4', 'p-6');
     
     const id = document.createElement('h1');
     id.classList.add('text-black', 'text-2xl', 'font-semibold', 'ml-10');
@@ -37,42 +101,50 @@ function criarCardPedido(info) {
         return dataTratada
     }
 
-    const idCliente = document.createElement('h1');
-    idCliente.textContent = info.id_cliente;
-    idCliente.classList.add('text-black', 'text-2xl')
-    
-    // const valor = document.createElement('p');
-    // valor.textContent = 'R$' + info.valor;
-    // valor.classList.add('text-black', 'text-2xl', 'ml-10');
-    
     const icones = document.createElement('div');
     icones.classList.add('flex', 'gap-4', 'ml-10');
-    
-    const iconeEditar = document.createElement('i');
-    iconeEditar.classList.add('bx' , 'bxs-edit-alt', 'text-white', 'text-2xl', 'cursor-pointer', 'transition-colors');
-    
-    const iconeDeletar = document.createElement('i');
-    iconeDeletar.classList.add('bx', 'bxs-trash', 'text-[#FF0000]', 'text-2xl', 'cursor-pointer', 'hover:text-[#FF4500]', 'transition-colors');
-    
-    icones.append(iconeEditar, iconeDeletar);
-    card1.append(id, dataPedido, idCliente, icones);
+
+    card1.append(id, dataPedido);
     container.appendChild(card1);
-    // card2.append(card1)
     
-    // iconeEditar.addEventListener('click', () => {
-    //     window.location.href = './editarFilme.html?id=' + info.id;
-    // });
-    
-    // iconeDeletar.addEventListener('click', () => {
-    //     deleteFilme(info.id);
-    //     window.location.reload();
-    // });
+    cliente.forEach(element => {
+        const idCliente = document.createElement('h3');
+        idCliente.textContent = element.id_cliente;
+        idCliente.classList.add('text-black', 'text-2xl')
+        card1.append(idCliente)
+    })
+    card1.addEventListener('click', function() {
+        colocarInfos(info.id_pedido)
+    })
 }
 
-//const add = document.getElementById('add');
+async function colocarInfos(id){
+    let infos = await getPedido(id)
 
-// add.addEventListener('click', () => {
-//     window.location.href = './cadastro.html';
-// });
+    let name = document.getElementById('nome')
+    name.textContent = `Nome: ${infos[0].cliente[0].nome}`
 
+    let email = document.getElementById('email')
+    email.textContent = `Email: ${infos[0].cliente[0].email}`
 
+    let telefone = document.getElementById('telefone')
+    telefone.textContent = `Telefone: ${infos[0].cliente[0].telefone}`
+
+    let endereco_entrega = document.getElementById('endereco_entrega')
+        endereco_entrega.textContent = `Endereco de entrega: ${infos[0].cliente[0].endereco_entrega}`
+
+        let forma_pagamento = document.getElementById('forma_pagamento')
+        forma_pagamento.textContent = `Forma Pagamento: ${infos[0].cliente[0].forma_pagamento}`
+
+        let troco = document.getElementById('troco')
+        troco.textContent = `Troco: ${infos[0].cliente[0].troco}`
+
+        let promocao_cupom = document.getElementById('promocao_cupom')
+         promocao_cupom.textContent = `Cupom: ${infos[0].cliente[0].promocao_cupom}`
+
+         let foto = document.getElementById('foto')
+         foto.src = `${infos[0].produto[0].foto}` 
+
+         let nome = document.getElementById('nome_produto')
+         nome.textContent = `Nome do Produto: ${infos[0].produto[0].nome}`
+} 
