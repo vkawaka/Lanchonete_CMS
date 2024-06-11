@@ -5,7 +5,7 @@ function criarCardIngrediente(info) {
     const container = document.getElementById('container')
 
     const card1 = document.createElement('div');
-    card1.classList.add('pl-[30px]', 'flex', 'gap-[250px]', 'pt-[25px]', 'drop-shadow-lg', 'w-[910px]', 'h-[80px]', 'bg-[#A2C91F]', 'rounded-[20px]');
+    card1.classList.add('pl-[30px]', 'flex', 'gap-[20px]', 'pt-[25px]', 'drop-shadow-lg', 'w-[910px]', 'h-[80px]', 'bg-[#A2C91F]', 'rounded-[20px]');
 
     const id = document.createElement('h1');
     id.classList.add('text-black', 'text-2xl', 'font-semibold', 'ml-10');
@@ -13,11 +13,11 @@ function criarCardIngrediente(info) {
 
     const nomeIngrediente = document.createElement('p');
     nomeIngrediente.textContent = info.nome;
-    nomeIngrediente.classList.add('text-black', 'text-2xl');
+    nomeIngrediente.classList.add('text-black', 'text-2xl', 'ml-[250px]');
 
     const quantidadeIngrediente = document.createElement('p');
     quantidadeIngrediente.textContent = info.quantidade;
-    quantidadeIngrediente.classList.add('text-black', 'text-2xl')
+    quantidadeIngrediente.classList.add('text-black', 'text-2xl',  'ml-[180px]')
 
     const tabelaNutricional = document.createElement('img');
     tabelaNutricional.textContent = info.quantidade;
