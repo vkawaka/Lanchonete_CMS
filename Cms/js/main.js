@@ -6,9 +6,8 @@ export async function getIngredientes(){
     const data = await response.json()
     console.log();
 
-    return data.ingredient
+    return data.ingrediente
 }
-
 export async function postIngrediente(){
     const url = 'http://localhost:8080/v1/lanchonete/ingrediente'
     const response = await fetch(url)
@@ -17,8 +16,6 @@ export async function postIngrediente(){
 
     return data.ingrediente
 }
-
-
 export async function getProdutos(){
     const url = 'http://localhost:8080/v1/lanchonete/produtos'
     const response = await fetch(url)
@@ -27,15 +24,12 @@ export async function getProdutos(){
 
     return data.produtos
 }
-
 export async function getProduto(id){
     const url = `${id}`
     const response = await fetch(url)
     const data = await response.json()
     return data.produto[0]
 }
-
-
 export async function postProduto(produto){
     const url = ''
     const options = {
@@ -50,7 +44,6 @@ export async function postProduto(produto){
 
     return response.ok
 }
-
 export async function putProduto(id, produto){
     const url = `${id}`
     const options = {
@@ -66,13 +59,10 @@ export async function putProduto(id, produto){
 
     return response.ok
 }
-
-
-export async function getProdutos(){
-    const url = 'http://localhost:8080/v1/lanchonete/produtos'
+export async function getCategorias(){
+    const url = 'http://localhost:8080/v1/lanchonete/categoria'
     const response = await fetch(url)
     const data = await response.json()
-    console.log();
 
-    return data.produtos
+    return data.categoria
 }

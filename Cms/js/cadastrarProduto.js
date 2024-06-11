@@ -1,40 +1,78 @@
 
 'use strict'
-import {postProduto} from "./main.js"
+import {postProduto, getCategorias, getIngredientes} from "./main.js"
+
 
 // Import das tags do HTML pelo ID
 const nome = document.getElementById('nome')
 const valor = document.getElementById('valor')
 const foto = document.getElementById('foto')
-const tabela_nutricional = document.getElementById('falecimento')
-const quantidade = document.getElementById('sexo')
-const descricao = document.getElementById('cadastrar')
-const poster = document.getElementById('poster')
+const tabela_nutricional = document.getElementById('tabela_nutricional')
+const quantidade = document.getElementById('quantidade')
+const cadastrar = document.getElementById('cadastrar')
+const descricao = document.getElementById('descricao')
+const categorias = document.getElementById('categoria')
+const ingredientes = document.getElementById('ingredientes')
+
+const criarCategoria = (cat) =>{
+    const categoria = document.createElement('option')
+    categoria.value = cat.nome
+    categoria.id = cat.id_categoria
+    categoria.textContent = cat.nome
+
+    return categoria
+}
+const criarIngrediente = (ing) =>{
+    const ingrediente = document.createElement('option')
+    ingrediente.value = ing.nome
+    ingrediente.id = ing.id_ingrediente
+    ingrediente.textContent = ing.nome
+
+    return ingrediente
+}
+
 
 cadastrar.addEventListener('click', ()=>{
 
     const nomeInput = nome.value
-    const biografiaInput = biografia.value
-    const nascimentoInput = nascimento.value
-    const falecimentoInput = falecimento.value
-    const sexoInput = sexo.value
-    const capaInput = poster.src
+    const valorInput = valor.value
+    const fotoInput = foto.value
+    const tabelaNutricionalInput = tabela_nutricional.value
+    const quantidadeInput = quantidade.value
+    const descricaoInput = descricao.src
+    const categoriaInput = categoria.src
+    const ingredientesInput = ingredientes.src
+    
+
     const insert ={
         nome: nomeInput,
-        biografia: biografiaInput,
-        data_nascimento: nascimentoInput,
-        data_falecimento: falecimentoInput,
-        sexo:sexoInput,       
-        foto: capaInput
+        valor: valorInput,
+        foto: fotoInput,
+        tabela_nutricional:tabelaNutricionalInput,
+        quantidade: quantidadeInput,       
+        descricao: descricaoInput,
+        categoria: categoriaInput,
+        ingredientes: ingredientesInput
         
     }
-
-    postAtor(insert)
-    window.location.href = '../html/ator.html'
-    
-    
+    postProduto(insert)
+    window.location.href = '../telaHome/produtos.html'
 })
 
-link.addEventListener('keyup', ()=>{
-    poster.src = link.value 
-})
+
+const teste = async() =>{
+    const cat = await getCategorias()
+    const ingr = await getIngredientes()
+    console.log(cat);
+    
+    cat.forEach(element => {
+        let categoria = criarCategoria(element)
+        categorias.append(categoria)
+    });
+    ingr.forEach(ele=>{
+        let ingrediente = criarIngrediente(ele)
+        ingredientes.append(ingrediente)
+    })
+}
+
+teste()
