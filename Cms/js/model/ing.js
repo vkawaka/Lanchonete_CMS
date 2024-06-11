@@ -26,3 +26,10 @@ export async function deleteIngrediente(id){
 
     return response.ok
 }
+
+export async function getUsuario(id) {
+    const url = `http://localhost:8080/v1/lanchonete/usuario/${id}`
+    const response = await fetch(url)
+    const data = await response.json()
+    return data.usuario
+}

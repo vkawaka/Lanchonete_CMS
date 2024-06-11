@@ -101,7 +101,7 @@
    
               var usuario = data.usuario.find(user => user.email === email && user.senha === senha);
               if (usuario) {
-                
+                localStorage.setItem('id', usuario.id_usuario)
                   window.location.href = "../telaHome/telaHome.html";
               } else {
                   alert("Email ou senha incorretos");

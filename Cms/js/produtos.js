@@ -16,6 +16,64 @@ async function teste() {
 teste()
 const container = document.getElementById('container');
 
+import { getUsuario } from "./model/ing.js";
+let id = localStorage.getItem('id')
+let controle = await getUsuario(id)
+console.log(controle);
+let cont = document.getElementById('controle')
+
+
+if (controle[0].cargo == "Atendente") {
+    let h = document.createElement('hr')
+    h.classList.add('border-black', 'mt-[15px]', 'w-[80px]')
+
+    let link = document.createElement('a')
+    link.href = '../telaHome/ingredientes.html'
+    link.classList.add('shadow-pop')
+    link.textContent = 'Ingredientes'
+
+    let h2 = document.createElement('hr')
+    h2.classList.add('border-black', 'mt-[15px]', 'w-[80px]')
+
+    let link2 = document.createElement('a')
+    link2.href = '../telaHome/produtos.html'
+    link2.classList.add('shadow-pop')
+    link2.textContent = 'Produtos'
+
+    cont.append(h, link, h2, link2)
+
+}
+
+if (controle[0].cargo == "Gerente") {
+
+    let h = document.createElement('hr')
+    h.classList.add('border-black', 'mt-[15px]', 'w-[80px]')
+
+    let link = document.createElement('a')
+    link.href = '../telaHome/ingredientes.html'
+    link.classList.add('shadow-pop')
+    link.textContent = 'Ingredientes'
+
+    let h2 = document.createElement('hr')
+    h2.classList.add('border-black', 'mt-[15px]', 'w-[80px]')
+
+    let link2 = document.createElement('a')
+    link2.href = '../telaHome/produtos.html'
+    link2.classList.add('shadow-pop')
+    link2.textContent = 'Produtos'
+
+    let h3 = document.createElement('hr')
+    h3.classList.add('border-black', 'mt-[15px]', 'w-[80px]')
+
+    let link3 = document.createElement('a')
+    link3.href = '../telaHome/produtos.html'
+    link3.classList.add('shadow-pop')
+    link3.textContent = 'Produtos'
+
+    cont.append(h, link, h2, link2, h3, link3)
+
+}
+
 function criarCardProduto(info) {
     const card1 = document.createElement('div');
     card1.classList.add('pl-[30px]' , 'flex', 'gap-[20px]', 'pt-[25px]'  , 'drop-shadow-lg', 'w-[910px]', 'h-[80px]', 'bg-[#A2C91F]', 'rounded-[20px]');
