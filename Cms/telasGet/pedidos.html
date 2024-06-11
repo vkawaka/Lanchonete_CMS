@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: { 
+              colors: {
+                clifford: '#15324D',
+            },
+              fontFamily: {
+        'fontee': ['Italiana', 'serif']
+          },
+          textShadow: {
+        'custom': '20px 40px 20px rgba(179, 179, 179, 10)',
+      }
+        }
+        }
+        }
+      </script>
+    <title>Pedidos</title>
+</head>
+<body>
+
+  <div>
+    <div class="">
+        <div class="ribbon"><span>ㅤ</span></div>
+     </div>
+
+    <div class="fixed left-[30%] top-[100px]">
+       <div class=" bg-white w-[800px] rounded-[40px] h-[650px] drop-shadow-lg">
+
+        <h1 class="fixed top-[60px] left-[130px] font-fontee font-bold">Dados do Cliente</h1>
+
+        <div class="fixed pl-[50px] pt-[100px] ">
+            <p class="m-6">Nome:</p>
+            <p class="m-6">E-mail:</p>
+            <p class="m-6">Número:</p>
+            <p class="m-6">Endereço de entrega:</p>
+            <p class="m-6">Forma de pagamento:</p>
+            <p class="m-6">Troco:</p>
+            <p class="m-6">Promoção/Cupom:</p>
+        </div>
+
+        <div class="pl-[400px] pt-[40px]">
+            <img src="../img/produto.png" alt="Foto do produto">
+            <p class="font-bold">ID do produto: </p>
+            <p class="pt-[30px]">X Sem Tomate</p>
+            <p>X Sem Alface</p>
+        </div>
+
+        <div class=" pl-[400px] pt-[50px]">
+            <p>Descrição do pedido:</p>
+            <div class=" w-[280px] h-[70px] rounded-[25px] bg-white drop-shadow-lg"></div>
+        </div>
+        
+
+
+       </div>
+    </div>
+  </div>
+
+</body>
+</html>
