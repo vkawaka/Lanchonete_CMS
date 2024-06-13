@@ -5,7 +5,16 @@ async function getProduto(){
     const data = await response.json()
     return data.produtos
 }
-
+async function deleteProduto(id){
+    try{
+        await fetch(`http://localhost:8080/v1/lanchonete/produto/${id}`,{
+            method: 'DELETE'
+        })
+        console.log("Produto excluído com sucesso")
+    } catch (error){
+        console.error('Erro ao excluir produto: ',error);
+    }
+}
 async function teste() {
     const listaProdutos = await getProduto();
     console.log(listaProdutos);
@@ -111,16 +120,10 @@ function criarCardProduto(info) {
     icones.append(iconeEditar, iconeDeletar);
     card1.append(id, nome, quantidade, icones);
     container.appendChild(card1);
-    // card2.append(card1)
-    
-    // iconeEditar.addEventListener('click', () => {
-    //     window.location.href = './editarFilme.html?id=' + info.id;
-    // });
-    
-    // iconeDeletar.addEventListener('click', () => {
-    //     deleteFilme(info.id);
-    //     window.location.reload();
-    // });
+     iconeDeletar.addEventListener('click', () => {
+        deleteProduto(info.id_produto);
+        window.location.reload();
+     });
 }
 
 //const add = document.getElementById('add');
